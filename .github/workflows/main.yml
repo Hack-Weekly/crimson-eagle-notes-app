@@ -13,10 +13,10 @@ jobs:
       fail-fast: false
       matrix:
         platform: [macos-latest, ubuntu-20.04, windows-latest]
+        projectPath:
+          - ./offline
     runs-on: ${{ matrix.platform }}
-    defaults:
-      run:
-        working-directory: ./offline
+  
   
 
     steps:
