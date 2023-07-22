@@ -7,8 +7,8 @@ on:
 
 defaults:
    run:
-      working-directory: offline
-
+      working-directory: ./offline/
+    
 jobs:
   release:
     permissions:
@@ -45,10 +45,12 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'npm' # Set this to npm, yarn or pnpm.
+          cache-dependency-path: "./offline/package-lock.json"
 
       - name: Install frontend dependencies
         # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
         run: npm install # Change this to npm, yarn or pnpm.
+        
 
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
