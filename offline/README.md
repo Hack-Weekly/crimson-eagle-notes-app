@@ -7,3 +7,4 @@ Please follow steps for your OS https://tauri.app/v1/guides/getting-started/prer
 ```
 npm run tauri Dev
 ```
+https://heroicons.com/
