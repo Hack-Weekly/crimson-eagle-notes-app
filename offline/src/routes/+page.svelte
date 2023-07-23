@@ -30,6 +30,10 @@
 			<h1 class="font-serif text-4xl">Nota</h1>
 		</div>
 	</div>
+	
+	<!-- SearchBar -->
+	<input class="w-2/4 h-11 px-5 pr-10 rounded-full bg-main text-sm focus:outline-none" type="text" placeholder="Search.."/>
+
 
 	<!-- right items -->
 	<div class="flex justify-end w-1/2">
