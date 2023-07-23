@@ -1,7 +1,13 @@
 <script lang='ts' src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js">
-	import { Button, Dropdown, DropdownItem } from 'flowbite-svelte'
-	import Icon from '@iconify/svelte';
 
+	import Icon from '@iconify/svelte';
+	import { slide } from 'svelte/transition';
+
+	let isDropdownOpen = false;
+
+	function toggleDropdown() {
+		isDropdownOpen = !isDropdownOpen;
+	}
 
 </script>
 
@@ -13,18 +19,22 @@
 <div id="header" class="flex mt-10">
 	<!-- left items -->
 	<div class="flex justify-start items-center w-1/2 ">
-		<div id="add" class="flex w-20 justify-center ml-10 mr-10">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 asc">
-					<path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
-			</svg>
-			<Dropdown triggeredBy=".asc" class="bg-main shadow-none">
-				<DropdownItem defaultClass="font-medium py-2 px-4 text-sm bg-main"><Icon icon="openmoji:blue-circle" class="w-6 h-6"/></DropdownItem>
-				<DropdownItem defaultClass="font-medium py-2 px-4 text-sm bg-main"><Icon icon="openmoji:red-circle" class="w-6 h-6"/></DropdownItem>
-				<DropdownItem defaultClass="font-medium py-2 px-4 text-sm bg-main"><Icon icon="openmoji:orange-circle" class="w-6 h-6"/></DropdownItem>
-				<DropdownItem defaultClass="font-medium py-2 px-4 text-sm bg-main"><Icon icon="openmoji:purple-circle" class="w-6 h-6"/></DropdownItem>
-				<DropdownItem defaultClass="font-medium py-2 px-4 text-sm bg-main"><Icon icon="openmoji:green-circle" class="w-6 h-6"/></DropdownItem>
-				<DropdownItem defaultClass="font-medium py-2 px-4 text-sm bg-main"><Icon icon="openmoji:yellow-circle" class="w-6 h-6"/></DropdownItem>
-			</Dropdown>
+		<div id="add" class="flex w-20 justify-center ml-10 mr-10 relative" >
+			<button class="add-button z-1" on:click={() => toggleDropdown()}>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 asc">
+						<path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+				</svg>
+			</button>
+			{#if isDropdownOpen}
+				<div class="absolute mt-9 z-0" in:slide={{duration: 600}} out:slide={{duration: 600}}>
+					<Icon icon="openmoji:blue-circle" class="w-6 h-6" />
+					<Icon icon="openmoji:red-circle" class="w-6 h-6" />
+					<Icon icon="openmoji:orange-circle" class="w-6 h-6" />
+					<Icon icon="openmoji:purple-circle" class="w-6 h-6" />
+					<Icon icon="openmoji:green-circle" class="w-6 h-6" />
+					<Icon icon="openmoji:yellow-circle" class="w-6 h-6" />
+				</div>
+      		{/if}
 		</div>
 		<div class="flex w-40 justify-center">
 			<h1 class="font-serif text-4xl">Nota</h1>
@@ -53,6 +63,8 @@
 		</div>
 	</div>
 </div>
+
+<!-- turn the add button to a drop down menu that when clicked shows these icons as buttons -->
 
 
 <!-- Sticky note zone -->
