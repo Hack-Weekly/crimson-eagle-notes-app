@@ -7,6 +7,7 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+	// Your selected Skeleton theme:
 }
 
 export {};
