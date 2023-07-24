@@ -1,6 +1,7 @@
 <script lang='ts' src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js">
 
 	import Icon from '@iconify/svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { slide, crossfade } from 'svelte/transition';
 
 	let isDropdownOpen = false;
@@ -13,6 +14,22 @@
     console.log(`Clicked icon color: ${color}`);
 	toggleDropdown();
   	}
+
+	function handleClickOutside(event: { target: Node | null; }) {
+		const dropdown = document.getElementById('add');
+		if (dropdown && !dropdown.contains(event.target)) {
+			isDropdownOpen = false;
+		}
+	}
+
+	onMount(() => {
+		document.addEventListener('click', handleClickOutside);
+	});
+
+	// Remove the event listener when the component is destroyed to prevent memory leaks
+	onDestroy(() => {
+		document.removeEventListener('click', handleClickOutside);
+	});
 
 </script>
 
