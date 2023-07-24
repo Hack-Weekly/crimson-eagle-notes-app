@@ -1,5 +1,5 @@
 <script>
-import Editor from '../../components/Editor.svelte'
+	// import Editor from '../../components/Editor.svelte'
 </script>
 
-<Editor />
+<!--<Editor />-->
