@@ -1,13 +1,35 @@
 <script lang='ts' src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js">
 
 	import Icon from '@iconify/svelte';
-	import { slide } from 'svelte/transition';
+	import { onDestroy, onMount } from 'svelte';
+	import { slide, crossfade } from 'svelte/transition';
 
 	let isDropdownOpen = false;
 
 	function toggleDropdown() {
 		isDropdownOpen = !isDropdownOpen;
 	}
+	
+	function logIconColor(color: string) {
+    console.log(`Clicked icon color: ${color}`);
+	toggleDropdown();
+  	}
+
+	function handleClickOutside(event: { target: Node | null; }) {
+		const dropdown = document.getElementById('add');
+		if (dropdown && !dropdown.contains(event.target)) {
+			isDropdownOpen = false;
+		}
+	}
+
+	onMount(() => {
+		document.addEventListener('click', handleClickOutside);
+	});
+
+	// Remove the event listener when the component is destroyed to prevent memory leaks
+	onDestroy(() => {
+		document.removeEventListener('click', handleClickOutside);
+	});
 
 </script>
 
@@ -20,19 +42,17 @@
 	<!-- left items -->
 	<div class="flex justify-start items-center w-1/2 ">
 		<div id="add" class="flex w-20 justify-center ml-10 mr-10 relative" >
-			<button class="add-button z-1" on:click={() => toggleDropdown()}>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 asc">
-						<path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
-				</svg>
+			<button class="add-button z-10" on:click={() => toggleDropdown()}>
+				<Icon icon="ph:plus-fill" class="w-9 h-9 asc" />
 			</button>
 			{#if isDropdownOpen}
-				<div class="absolute mt-9 z-0" in:slide={{duration: 600}} out:slide={{duration: 600}}>
-					<Icon icon="openmoji:blue-circle" class="w-6 h-6" />
-					<Icon icon="openmoji:red-circle" class="w-6 h-6" />
-					<Icon icon="openmoji:orange-circle" class="w-6 h-6" />
-					<Icon icon="openmoji:purple-circle" class="w-6 h-6" />
-					<Icon icon="openmoji:green-circle" class="w-6 h-6" />
-					<Icon icon="openmoji:yellow-circle" class="w-6 h-6" />
+				<div class="flex flex-col mt-9 ml-1.4 absolute"  in:slide={{duration: 600}} out:slide={{duration: 600}}>
+					<button on:click={() => logIconColor('blue')}><Icon icon="openmoji:blue-circle" class="w-7 h-7"/></button>
+					<button on:click={() => logIconColor('red')}><Icon icon="openmoji:red-circle" class="w-7 h-7" /></button>
+					<button on:click={() => logIconColor('orange')}><Icon icon="openmoji:orange-circle" class="w-7 h-7" /></button>
+					<button on:click={() => logIconColor('purple')}><Icon icon="openmoji:purple-circle" class="w-7 h-7" /></button>
+					<button on:click={() => logIconColor('green')}><Icon icon="openmoji:green-circle" class="w-7 h-7" /></button>
+					<button on:click={() => logIconColor('yellow')}><Icon icon="openmoji:yellow-circle" class="w-7 h-7" /></button>
 				</div>
       		{/if}
 		</div>
