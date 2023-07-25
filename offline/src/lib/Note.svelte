@@ -1,27 +1,26 @@
 <script lang="ts">
 	import { Tooltip } from 'flowbite-svelte';
+	import { notes } from '$lib/store';
+	import type { Note } from '$lib/store';
 
-	export let id: number;
-	export let color: string;
-	export let title: string;
-	export let excerpt: string;
-	export let starred: boolean = false;
+	export let note: Note;
 
 	const twClasses = ['bg-note-orange', 'bg-note-green', 'bg-note-blue', 'bg-note-pink'];
 
 	const onStar = () => {
 		console.log('Star clicked');
+		notes.updateNote(note.id, { starred: !note.starred });
 	};
 </script>
 
 <div
-	class="flex flex-col relative w-full p-8 aspect-[5/6] rounded-2xl shadow-lg shadow-slate-400 bg-note-{color}"
+	class="flex flex-col relative w-full p-8 aspect-[5/6] rounded-2xl shadow-lg shadow-slate-400 bg-note-{note.color}"
 >
 	<button
 		class="absolute z-10 top-3 right-3 p-2 text-slate-700 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-500 group"
 		on:click={onStar}
 	>
-		{#if starred}
+		{#if note.starred}
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
@@ -72,10 +71,10 @@
 				/>
 			</svg>
 		{/if}
-		<Tooltip arrow={false}>{starred ? 'Remove star' : 'Star Note'}</Tooltip>
+		<Tooltip arrow={false}>{note.starred ? 'Remove star' : 'Star Note'}</Tooltip>
 	</button>
 	<a
-		href="/edit/{id}"
+		href="/edit/{note.id}"
 		class="absolute z-10 bottom-3 right-3 p-2 text-slate-700 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-500"
 	>
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 fill-current">
@@ -85,8 +84,8 @@
 		</svg>
 		<Tooltip arrow={false}>Edit Note</Tooltip>
 	</a>
-	<h2 class="w-full mr-6 text-xl font-medium">{title}</h2>
+	<h2 class="w-full mr-6 text-xl font-medium">{note.title}</h2>
 	<div class="w-full flex-1 overflow-y-scroll fade-text">
-		<p class="my-2">{excerpt}</p>
+		<p class="my-2">{note.excerpt}</p>
 	</div>
 </div>
