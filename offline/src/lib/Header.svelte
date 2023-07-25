@@ -11,7 +11,7 @@
 
 <!-- main header div -->
 <header id="header" class="m-0 p-12 md:ml-32 md:mr-64 md:p-12 xl:px-24 xl:py-12 flex items-center">
-	<h1 class="mr-32 md:mr-16 lg:mr-32 font-serif text-4xl">Nota</h1>
+	<a href="/" ><h1 class="mr-32 md:mr-16 lg:mr-32 font-serif text-4xl">Nota</h1></a>
 	<!-- SearchBar -->
 	<form on:submit|preventDefault={onSearch} class="grow max-w-md">
 		<Input
