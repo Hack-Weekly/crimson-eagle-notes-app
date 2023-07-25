@@ -10,6 +10,9 @@
 		class="m-3 rounded bg-transparent text-slate-700 dark:text-gray-400 hover:bg-slate-700 dark:hover:bg-gray-400 hover:text-slate-100 dark:hover:text-gray-700"
 		on:click={console.log}
 	>
+	<a
+		href="/favorites"
+	>
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
 			<path
 				fill-rule="evenodd"
@@ -18,6 +21,7 @@
 			/>
 		</svg>
 		<Tooltip arrow={false}>Star Note</Tooltip>
+	</a>
 	</button>
 	<a
 		href="/profile"
