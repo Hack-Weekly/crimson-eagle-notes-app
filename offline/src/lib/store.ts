@@ -1,6 +1,14 @@
 import { writable } from 'svelte/store';
 
-export const notes = writable([
+export interface Note {
+    id: number;
+    color: string;
+    title: string;
+    excerpt: string;
+    starred: boolean;
+}
+
+const defaultNotes: Note[] = [
     {
         id: 1,
         color: "orange",
@@ -29,4 +37,41 @@ export const notes = writable([
         excerpt: "Fusce erat lorem, molestie sed suscipit id, rhoncus vel arcu. Praesent nec neque turpis.",
         starred: false,
     }
-]);
+];
+
+const loadNotes = (): Note[] => {
+    const storedNotes = localStorage.getItem('notes');
+    return storedNotes ? JSON.parse(storedNotes) : defaultNotes;
+};
+
+const saveNotes = (notes: Note[]) => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+};
+
+const noteStore = writable<Note[]>(loadNotes());
+
+const createNotesStore = () => {
+    const { subscribe, update } = noteStore;
+  
+    return {
+      subscribe,
+      addNote: (note: Note) => update(notes => {
+        const newNotes = [...notes, note];
+        saveNotes(newNotes);
+        return newNotes;
+      }),
+      deleteNote: (id: number) => update(notes => {
+        const newNotes = notes.filter(note => note.id !== id);
+        saveNotes(newNotes);
+        return newNotes;
+      }),
+      updateNote: (id: number, updatedFields: Partial<Note>) => update(notes => {
+        const newNotes = notes.map(note => note.id === id ? { ...note, ...updatedFields } : note);
+        saveNotes(newNotes);
+        return newNotes;
+      }),
+    };
+};
+  
+  
+  export const notes = createNotesStore();

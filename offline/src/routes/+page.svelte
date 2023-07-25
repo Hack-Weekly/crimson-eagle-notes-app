@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Breadcrumb, BreadcrumbItem, TabItem } from 'flowbite-svelte';
 	import Note from '$lib/Note.svelte';
-	import { notes } from '$lib/store'
+	import { notes } from '$lib/store';
 </script>
 
 <!-- Sticky note zone -->
@@ -16,9 +16,8 @@
 		class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-12"
 	>
 
-
 	{#each $notes as note (note.id)}
-	<Note id={note.id} color={note.color} title={note.title} excerpt={note.excerpt} starred={note.starred}/>
+		<Note {note} />
 	{/each}
 	</div>
 </div>
