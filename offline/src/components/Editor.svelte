@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {browser} from '$app/environment'
 	import { Editor, rootCtx, defaultValueCtx } from '@milkdown/core'
 	import { commonmark } from '@milkdown/preset-commonmark'
 	import { nord } from '@milkdown/theme-nord'
@@ -19,6 +20,7 @@ import 'prism-themes/themes/prism-nord.css'
 	`**Start Writing Markdown**`
 	
 	function editor(dom: any) {
+		if (browser) {
 	  Editor.make()
 		.config((ctx) => {
 		  ctx.set(rootCtx, dom)
@@ -40,6 +42,8 @@ import 'prism-themes/themes/prism-nord.css'
 	.use(history)
 	.use(clipboard)
 		.create();
+	
+	}
 	}
 	</script>
 	
