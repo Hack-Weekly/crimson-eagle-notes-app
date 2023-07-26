@@ -85,7 +85,7 @@
 		<Tooltip arrow={false}>Edit Note</Tooltip>
 	</a>
 	<h2 class="w-full mr-6 text-xl font-medium">{note.title}</h2>
-	<div class="w-full flex-1 overflow-y-scroll fade-text">
+	<div class="w-full flex-1 overflow-hidden fade-text">
 		<p class="my-2">{note.excerpt}</p>
 	</div>
 </div>

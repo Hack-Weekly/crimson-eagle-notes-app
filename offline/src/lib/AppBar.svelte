@@ -3,7 +3,7 @@
 </script>
 
 <BottomNav
-	position="absolute"
+	position="fixed"
 	navType="application"
 	classOuter="md:hidden w-full z-50 border-gray-200 dark:bg-gray-700 dark:border-gray-600"
 	classInner="grid-cols-5"

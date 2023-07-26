@@ -1,4 +1,6 @@
 import { writable } from 'svelte/store';
+import { invoke } from '@tauri-apps/api/tauri';
+import type { PaginatedNotes } from "../types/note.type";
 
 export interface Note {
     id: number;
@@ -39,22 +41,40 @@ const defaultNotes: Note[] = [
     }
 ];
 
-const loadNotes = (): Note[] => {
+export const isLoading = writable(false);
+export const fetchError = writable<string | null>(null);
+
+const loadNotes = async (): Promise<Note[]> => {
+    fetchError.set(null);
     const storedNotes = localStorage.getItem('notes');
-    return storedNotes ? JSON.parse(storedNotes) : defaultNotes;
+
+    if (!storedNotes) {
+        isLoading.set(true);
+        const fetchNotes = await invoke<PaginatedNotes>('fetch_notes')
+            .then(res => res.records)
+            .catch(err => {
+                console.log(err)
+                fetchError.set(err)
+            })
+            .finally(() => isLoading.set(false));
+        return fetchNotes ? fetchNotes : defaultNotes;
+    }
+    return JSON.parse(storedNotes);
 };
 
 const saveNotes = (notes: Note[]) => {
     localStorage.setItem('notes', JSON.stringify(notes));
 };
 
-const noteStore = writable<Note[]>(loadNotes());
+const noteStore = writable<Note[]>(await loadNotes());
+
 
 const createNotesStore = () => {
-    const { subscribe, update } = noteStore;
+    const { subscribe, update, set } = noteStore;
   
     return {
       subscribe,
+      setNotes: (notes: Note[]) => set(notes),
       addNote: (note: Note) => update(notes => {
         const newNotes = [...notes, note];
         saveNotes(newNotes);
@@ -74,4 +94,4 @@ const createNotesStore = () => {
 };
   
   
-  export const notes = createNotesStore();
+export const notes = createNotesStore();

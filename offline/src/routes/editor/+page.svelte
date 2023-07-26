@@ -1,5 +1,5 @@
-<script>
-	// import Editor from '../../components/Editor.svelte'
+<script lang="ts">
+	import Tiptap from '$lib/Tiptap.svelte';
 </script>
 
-<!--<Editor />-->
+<Tiptap />
