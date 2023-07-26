@@ -12,6 +12,7 @@
 
 	const onNewNote = (color: string) => {
 		console.log(`New note will be added in color ${color}`);
+		localStorage.setItem('noteColor', color);
 	};
 
 	const onDelete = () => {
@@ -74,12 +75,14 @@
 				out:slide={{ duration: 600 }}
 			>
 				{#each ['orange', 'green', 'blue', 'pink'] as color}
+				<a href="/add">
 					<button
 						on:click={() => onNewNote(color)}
 						class="w-6 h-6 m-3 bg-note-{color} rounded-full hover:blur-sm"
 						type="button"
 						title="Add {color} note"
 					/>
+				</a>
 				{/each}
 			</div>
 		{/if}
@@ -113,3 +116,4 @@
 		</a>
 	</div>
 </div>
+
