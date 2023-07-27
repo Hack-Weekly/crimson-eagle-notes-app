@@ -14,9 +14,6 @@
 <div>
 	<Breadcrumb aria-label="Breadcrumbs" class="mb-10">
 		<BreadcrumbItem href="/" home>Home</BreadcrumbItem>
-		<BreadcrumbItem href="/">Folder 1</BreadcrumbItem>
-		<BreadcrumbItem href="/">Folder 2</BreadcrumbItem>
-		<BreadcrumbItem>Folder 3</BreadcrumbItem>
 	</Breadcrumb>
 
 	<div use:loader={isLoading}>
