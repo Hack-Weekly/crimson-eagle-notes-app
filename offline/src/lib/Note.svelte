@@ -22,7 +22,7 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
-				class="block group-hover:hidden w-8 h-8 fill-current"
+				class="block w-8 h-8 fill-current"
 			>
 				<path
 					fill-rule="evenodd"
@@ -35,7 +35,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="hidden group-hover:block w-8 h-8 fill-none stroke-current"
+				class="hidden w-8 h-8 fill-none stroke-current"
 			>
 				<path
 					stroke-linecap="round"
@@ -49,7 +49,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="block group-hover:hidden w-8 h-8 fill-none stroke-current"
+				class="block w-8 h-8 fill-none stroke-current"
 			>
 				<path
 					stroke-linecap="round"
@@ -60,7 +60,7 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
-				class="hidden group-hover:block w-8 h-8 fill-current"
+				class="hidden  w-8 h-8 fill-current"
 			>
 				<path
 					fill-rule="evenodd"
