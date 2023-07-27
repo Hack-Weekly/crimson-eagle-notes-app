@@ -1,5 +1,5 @@
 <script lang='ts'>
-    import { Label, Button } from 'flowbite-svelte';
+    import { Label, Button, Breadcrumb, BreadcrumbItem } from 'flowbite-svelte';
     import { notes } from '$lib/stores/note';
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
@@ -43,17 +43,24 @@
     });
 </script>
 
-<div class="flex flex-col justify-start items-center gap-4">
-    {#if !exists} <!-- Display error message if note does not exist -->
-        <p>Note not found. Please ensure you have the correct ID.</p>
-    {:else}
-        <Label for='large-input' class='block mb-2'>Title</Label>
-        <textarea bind:value={updatedNoteTitle} id='title-input' class="flex gap-2 w-96 h-10 items-center rounded-lg text-sm focus:outline-none neumorph border-black" placeholder="Title..."/>
-        <Label for='large-input' class='block mb-2'>Content</Label>
-        <textarea bind:value={updatedNoteContent} id='content-input' class="flex gap-2 w-96 h-96 rounded-lg text-sm focus:outline-none neumorph border-black break-words" placeholder="Content"/>
-        <div class="flex items-center bottom-0 p-4 gap-8">
-            <Button on:click={updateCurrentNote} class="btn"> Save </Button>
-            <Button class="btn"><a href="/">Cancel</a></Button>
-        </div>
-    {/if}
+
+<div class="w-full">
+    <Breadcrumb aria-label="Breadcrumbs" class="mb-10 justify-start">
+        <BreadcrumbItem href="/" home>Home</BreadcrumbItem>
+        <BreadcrumbItem>Edit</BreadcrumbItem>
+    </Breadcrumb>
+    <div class="flex flex-col justify-start items-center gap-4">
+        {#if !exists} <!-- Display error message if note does not exist -->
+            <p>Note not found. Please ensure you have the correct ID.</p>
+        {:else}
+            <Label for='large-input' class='block mb-2'>Title</Label>
+            <textarea bind:value={updatedNoteTitle} id='title-input' class="flex gap-2 w-96 h-10 items-center rounded-lg text-sm focus:outline-none neumorph border-black" placeholder="Title..."/>
+            <Label for='large-input' class='block mb-2'>Content</Label>
+            <textarea bind:value={updatedNoteContent} id='content-input' class="flex gap-2 w-96 h-96 rounded-lg text-sm focus:outline-none neumorph border-black break-words" placeholder="Content"/>
+            <div class="flex items-center bottom-0 p-4 gap-8">
+                <Button on:click={updateCurrentNote} class="btn"> Save </Button>
+                <Button class="btn"><a href="/">Cancel</a></Button>
+            </div>
+        {/if}
+    </div>
 </div>
