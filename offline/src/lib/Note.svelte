@@ -5,6 +5,8 @@
 
 	export let note: NoteType;
 
+	const twClasses = ['bg-note-orange', 'bg-note-green', 'bg-note-blue', 'bg-note-pink'];
+
 	const onStar = () => {
 		console.log('Star clicked');
 		notes.updateNote(note.id, { starred: !note.starred });
@@ -60,7 +62,7 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
-				class="hidden  w-8 h-8 fill-current"
+				class="hidden w-8 h-8 fill-current"
 			>
 				<path
 					fill-rule="evenodd"
