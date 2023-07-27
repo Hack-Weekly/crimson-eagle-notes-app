@@ -3,7 +3,6 @@
     import { Button } from 'flowbite-svelte';
 
 
-
     const addNewNote = () => {
         console.log("Adding new note");
 
@@ -16,7 +15,7 @@
         currentNotes = currentNotes ? JSON.parse(currentNotes) : [];
 
         const newNote = {
-            id: currentNotes.length + 1,
+            id: Date.now(),
             color: localStorage.getItem('noteColor'), 
             title: newNoteTitle,
             excerpt: newNoteContent.substr(0, 50), 

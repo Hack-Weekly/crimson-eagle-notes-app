@@ -106,6 +106,7 @@
 				<Tooltip arrow={false}>Star Note</Tooltip>
 			</a>
 		</button>
+		<a href="/delete">
 		<button
 			class="m-3 bg-transparent text-slate-700 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-500"
 			on:click={onDelete}
@@ -119,6 +120,7 @@
 			</svg>
 			<Tooltip arrow={false}>Delete Notes</Tooltip>
 		</button>
+		</a>
 		<a
 			href="/settings"
 			class="m-3 rounded bg-transparent text-slate-700 dark:text-gray-400 hover:bg-slate-700 dark:hover:bg-gray-400 hover:text-slate-100 dark:hover:text-gray-700"
