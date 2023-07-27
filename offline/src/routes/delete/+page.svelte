@@ -1,22 +1,24 @@
 <script lang='ts'>
+    import { notes } from '$lib/stores/note';
+    import type { NoteType } from '../../types/note.type';
 
-    let currentNotes = localStorage.getItem('notes');
-    currentNotes = currentNotes ? JSON.parse(currentNotes) : [];
-
+    let currentNotes: NoteType[];
+    notes.subscribe(value => {
+        currentNotes = value;
+    });
 
     let showNotes = false;
-    // let areYouSure = false; on note click pop are you sure, if yes is click run deleteNoteById, if cancel areYouSure = false;
+    // let areYouSure = false; // on note click pop are you sure, if yes is click run deleteNoteById, if cancel areYouSure = false;
 
     const seeCurrentNotes = () => {
         console.log(currentNotes);
         showNotes = true;
     }
 
-    const deleteNoteById = (idToDelete) => {
-        currentNotes = currentNotes.filter(note => note.id !== idToDelete);
-        localStorage.setItem('notes', JSON.stringify(currentNotes));
-        console.log(currentNotes);
-        window.location.href = "/";
+    const deleteNoteById = (idToDelete: number) => {
+        notes.deleteNote(idToDelete);
+        console.log($notes);
+        // window.location.href = "/"; // redirects to home page after deletion
     }
 
     /*const areYouSure = () => {areYouSure = true;}

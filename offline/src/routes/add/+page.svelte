@@ -14,7 +14,7 @@
         console.log(currentNotes.length);
 
         const newNote: NoteType = {
-            id: currentNotes.length + 1,
+            id: Date.now(),
             color: localStorage.getItem('noteColor')!, 
             title: newNoteTitle,
             excerpt: newNoteContent.substr(0, 50), 
