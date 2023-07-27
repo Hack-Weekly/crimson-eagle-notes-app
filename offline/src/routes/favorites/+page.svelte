@@ -1,7 +1,7 @@
 <script>
 	import { Breadcrumb, BreadcrumbItem } from 'flowbite-svelte';
     import Note from '$lib/Note.svelte';
-    import { notes } from '$lib/store';
+    import { notes } from '$lib/stores/note';
     
     // Only get notes that are starred
     $: starredNotes = $notes.filter(note => note.starred);
