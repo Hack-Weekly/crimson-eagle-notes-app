@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Tooltip } from 'flowbite-svelte';
-	import { notes } from '$lib/store';
-	import type { Note } from '$lib/store';
+	import { notes } from '$lib/stores/note';
+	import type { NoteType } from '../types/note.type';
 
-	export let note: Note;
+	export let note: NoteType;
 
 	const twClasses = ['bg-note-orange', 'bg-note-green', 'bg-note-blue', 'bg-note-pink'];
 
@@ -62,7 +62,7 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
-				class="hidden  w-8 h-8 fill-current"
+				class="hidden w-8 h-8 fill-current"
 			>
 				<path
 					fill-rule="evenodd"

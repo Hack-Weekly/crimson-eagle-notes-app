@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Breadcrumb, BreadcrumbItem, Toast } from 'flowbite-svelte';
-	import { notes, isLoading, fetchError } from '$lib/store';
+	import { notes, isLoading, fetchError } from '$lib/stores/note';
 	import { loader } from '$lib/loader.js';
 	import Note from '$lib/Note.svelte';
 

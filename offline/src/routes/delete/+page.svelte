@@ -5,12 +5,13 @@
     let popupModal = false;
     let group = [];
 
-    let currentNotes = localStorage.getItem('notes');
-    currentNotes = currentNotes ? JSON.parse(currentNotes) : [];
-
+    let currentNotes: NoteType[];
+    notes.subscribe(value => {
+        currentNotes = value;
+    });
 
     let showNotes = false;
-    // let areYouSure = false; on note click pop are you sure, if yes is click run deleteNoteById, if cancel areYouSure = false;
+    // let areYouSure = false; // on note click pop are you sure, if yes is click run deleteNoteById, if cancel areYouSure = false;
 
     const seeCurrentNotes = () => {
         console.log(currentNotes);
