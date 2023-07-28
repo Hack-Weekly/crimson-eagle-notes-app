@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Breadcrumb, BreadcrumbItem, Toast } from 'flowbite-svelte';
 	import { notes, isLoading, fetchError } from '$lib/stores/note';
+	import { searchQuery } from '$lib/stores/search';
+	import { derived } from 'svelte/store';
 	import { loader } from '$lib/loader.js';
 	import Note from '$lib/Note.svelte';
 
@@ -8,6 +10,11 @@
 	fetchError.subscribe((value) => {
 		error = value;
 	});
+
+    let filteredNotes = derived(
+        [notes, searchQuery], 
+        ([$notes, $searchQuery]) => $notes.filter(note => note.title.includes($searchQuery))
+    );
 </script>
 
 <!-- Sticky note zone -->
@@ -41,7 +48,7 @@
 			</Toast>
 		{:else}
 			<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-12">
-				{#each $notes as note (note.id)}
+				{#each $filteredNotes as note (note.id)}
 					<Note {note} />
 				{/each}
 			</div>
