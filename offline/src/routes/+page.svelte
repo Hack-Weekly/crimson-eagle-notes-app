@@ -13,7 +13,7 @@
 
     let filteredNotes = derived(
         [notes, searchQuery], 
-        ([$notes, $searchQuery]) => $notes.filter(note => note.title.includes($searchQuery))
+        ([$notes, $searchQuery]) => $notes.filter(note => note.title.toLowerCase().includes($searchQuery.toLowerCase()))
     );
 </script>
 
