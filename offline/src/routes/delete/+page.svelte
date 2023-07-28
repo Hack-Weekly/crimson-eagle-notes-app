@@ -1,6 +1,6 @@
 <script lang='ts'>
     import { Button, Modal, Checkbox } from 'flowbite-svelte'
-
+    import { notes } from '$lib/stores/note'
 
     let popupModal = false;
     let group = [];
@@ -15,19 +15,15 @@
         showNotes = true;
     }
 
-    const deleteNoteById = (idToDelete) => {
-        currentNotes = currentNotes.filter(note => note.id !== idToDelete);
-    }
-
     const deleteSelectedNotes = () => {
         console.log(group);
         for(let i = 0; i < group.length; i++) {
-            deleteNoteById(group[i]);
+            notes.deleteNote(group[i]);
     }
-    localStorage.setItem('notes', JSON.stringify(currentNotes));
     console.log(currentNotes);
     window.location.href = "/";
 }
+
 
 //assign to delete button next to see notes on:click={() => popupModal = true}
 
