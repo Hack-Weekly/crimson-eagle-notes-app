@@ -39,7 +39,7 @@ pub struct PaginatedResult<T> {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct NoteFrontmatter {
-    pub id: Option<TinyId>,
+    pub id: Option<u64>,
     pub title: Option<String>,
     pub excerpt: Option<String>,
     pub color: Option<String>,
@@ -65,7 +65,7 @@ impl NoteFrontmatter {
 impl From<NoteDTO> for NoteFrontmatter {
     fn from(note: NoteDTO) -> Self {
         NoteFrontmatter {
-            id: Some(note.id),
+            id: Some(note.id.to_u64()),
             title: Some(note.title),
             excerpt: Some(note.excerpt),
             color: Some(note.color),
