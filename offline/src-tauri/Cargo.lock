@@ -131,12 +131,14 @@ dependencies = [
  "ammonia",
  "chrono",
  "comrak",
+ "fastrand 1.9.0",
  "serde",
  "serde_json",
  "serde_yaml",
  "tauri",
  "tauri-build",
  "thiserror",
+ "tinyid",
 ]
 
 [[package]]
@@ -825,6 +827,15 @@ checksum = "9d6b8560a05112eb52f04b00e5d3790c0dd75d9d980eb8a122fb23b92a623ccf"
 dependencies = [
  "bit-set",
  "regex",
+]
+
+[[package]]
+name = "fastrand"
+version = "1.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e51093e27b0797c359783294ca4f0a911c270184cb10f85783b118614a1501be"
+dependencies = [
+ "instant",
 ]
 
 [[package]]
@@ -3088,7 +3099,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5486094ee78b2e5038a6382ed7645bc084dc2ec433426ca4c3cb61e2007b8998"
 dependencies = [
  "cfg-if",
- "fastrand",
+ "fastrand 2.0.0",
  "redox_syscall 0.3.5",
  "rustix 0.38.4",
  "windows-sys",
@@ -3187,6 +3198,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "96ba15a897f3c86766b757e5ac7221554c6750054d74d5b28844fce5fb36a6c4"
 dependencies = [
  "time-core",
+]
+
+[[package]]
+name = "tinyid"
+version = "1.0.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ce2c0dac4e3fcad3f6529e3d76ca55e7fa135d5afc442bbcaf756dc62cf8eeb"
+dependencies = [
+ "fastrand 1.9.0",
+ "serde",
 ]
 
 [[package]]
