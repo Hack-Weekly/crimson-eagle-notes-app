@@ -1,6 +1,7 @@
 use comrak::nodes::{AstNode, NodeValue};
 use comrak::{markdown_to_html, parse_document, Arena, ComrakOptions};
 use serde::{Deserialize, Serialize};
+use tinyid::TinyId;
 
 use crate::models::*;
 
@@ -83,9 +84,12 @@ pub fn convert_to_note(content: String, default_note: NoteDTO) -> NoteDTO {
     let frontmatter = iter_nodes(root).join("").replace("---", "");
     let mut frontmatter: NoteFrontmatter = match serde_yaml::from_str(&frontmatter) {
         Ok(f) => f,
-        Err(_) => NoteFrontmatter::new(),
+        Err(err) => {
+            println!("Error: {}", err);
+            NoteFrontmatter::new()
+        }
     };
-
+    println!("Frontmatter: {:?}", frontmatter);
     if frontmatter.excerpt.is_none() {
         frontmatter.excerpt = get_first_paragraph(root);
     }
@@ -95,7 +99,7 @@ pub fn convert_to_note(content: String, default_note: NoteDTO) -> NoteDTO {
 
     // add optional data from frontmatter
     if let Some(id) = frontmatter.id {
-        note.id = id;
+        note.id = TinyId::from_u64_unchecked(id);
     }
     if let Some(title) = frontmatter.title {
         note.title = title;
