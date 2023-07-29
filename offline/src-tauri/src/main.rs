@@ -10,6 +10,7 @@ fn main() {
             // Pass in commands
             commands::md_parser::parse_md_to_html,
             commands::note_controller::fetch_notes,
+            commands::note_controller::save_note,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
