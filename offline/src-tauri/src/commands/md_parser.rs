@@ -8,7 +8,7 @@ use crate::models::*;
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MdResponse {
-    markup: String,
+    pub markup: String,
 }
 
 /// Parse Markdown string into HTML Markup string

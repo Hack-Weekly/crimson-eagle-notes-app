@@ -35,7 +35,7 @@ fn read_directory() -> Result<Vec<PathBuf>, NotesError> {
     get_files_in_folder(vault_path)
 }
 
-fn convert_file_to_note(file: PathBuf) -> NoteDTO {
+pub fn convert_file_to_note(file: PathBuf) -> NoteDTO {
     let mut created_at = Utc::now();
     let mut updated_at = Utc::now();
     if let Ok(metadata) = file.metadata() {

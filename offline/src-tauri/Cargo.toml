@@ -25,6 +25,7 @@ serde_yaml = "0.9"
 tauri = { version = "1.4.0", features = [] }
 thiserror = "1.0"
 tinyid = { version = "1.0.3", features = ["serde"] }
+tokio = { version = "1.29.1", features = ["full"] }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
