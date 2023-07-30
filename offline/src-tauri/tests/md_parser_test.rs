@@ -64,8 +64,8 @@ title: Complete Note
 excerpt: Complete Excerpt
 color: red
 starred: true
-created_at: 2023-07-30T14:30:00Z
-updated_at: 2023-07-30T14:30:00Z
+created_at: 2023-07-30T14:30:00
+updated_at: 2023-07-30T14:30:00
 ---
 This is a complete note.
 ");
