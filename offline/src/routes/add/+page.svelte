@@ -7,6 +7,7 @@
 	import { notes } from '$lib/stores/note';
 	import type { NoteType } from '../../types/note.type';
 	import InfoDrawer from '$lib/InfoDrawer.svelte';
+	import { Breadcrumb, BreadcrumbItem } from 'flowbite-svelte';
 
 	let newNoteTitle = '';
 	let newNoteContent = '';
@@ -53,6 +54,10 @@
 </script>
 
 <div class="flex flex-col justify-start">
+	<Breadcrumb aria-label="Breadcrumbs" class="mb-10 justify-start">
+        <BreadcrumbItem href="/" home>Home</BreadcrumbItem>
+        <BreadcrumbItem>Add</BreadcrumbItem>
+    </Breadcrumb>
 	<Tabs>
 		<TabItem open title="Editor">
 			<div>
