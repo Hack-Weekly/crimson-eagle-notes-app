@@ -27,8 +27,12 @@ const saveNotes = (notes: NoteType[]) => {
     localStorage.setItem('notes', JSON.stringify(notes));
 };
 
-const noteStore = writable<NoteType[]>(await loadNotes());
+const noteStore = writable<NoteType[]>([]);
 
+(async () => {
+    const loadedNotes = await loadNotes();
+    noteStore.set(loadedNotes);
+})();
 
 const createNotesStore = () => {
     const { subscribe, update, set } = noteStore;
