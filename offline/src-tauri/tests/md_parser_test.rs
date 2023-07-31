@@ -143,6 +143,7 @@ And this is the third paragraph.
     assert_eq!(note.id, TinyId::from_u64_unchecked(69));
     assert_eq!(note.title, "test note");
     assert_eq!(note.excerpt,"This is the first paragraph of the note.");
+    assert_eq!(note.content, "<h1>Heading1</h1>\n<p>This is the first paragraph of the note.</p>\n<h2>Heading2</h2>\n<p>Here is the second paragraph.</p>\n<h3>Heading3</h3>\n<p>And this is the third paragraph.</p>\n");
 }
 
 #[test]
