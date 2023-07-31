@@ -12,7 +12,6 @@
 	let newNoteTitle = '';
 	let newNoteContent = '';
 	let theme = localStorage.getItem('noteColor');
-	
 
 	const md = new MarkdownIt({
 		breaks: true,
@@ -55,9 +54,9 @@
 
 <div class="flex flex-col justify-start">
 	<Breadcrumb aria-label="Breadcrumbs" class="mb-10 justify-start">
-        <BreadcrumbItem href="/" home>Home</BreadcrumbItem>
-        <BreadcrumbItem>Add</BreadcrumbItem>
-    </Breadcrumb>
+		<BreadcrumbItem href="/" home>Home</BreadcrumbItem>
+		<BreadcrumbItem>Add</BreadcrumbItem>
+	</Breadcrumb>
 	<Tabs>
 		<TabItem open title="Editor">
 			<div>
@@ -66,25 +65,25 @@
 					id="content"
 					rows="20"
 					placeholder="Content"
-					class="flex gap-2 rounded-lg focus:outline-none neumorph border-black focus:border-note-{theme}"
+					class="neumorph flex gap-2 rounded-lg border-black focus:outline-none focus:border-note-{theme}"
 				/>
 			</div>
 		</TabItem>
 		<TabItem title="Preview" class="text-{theme}">
 			<div
 				id="preview"
-				class="flex gap-2 p-2 px-3 rounded-lg focus:outline-none neumorph border-black"
+				class="neumorph flex gap-2 rounded-lg border-black p-2 px-3 focus:outline-none"
 			>
-				<div class="prose prose-slate prose-sm">
+				<div class="prose-slat prose prose-sm dark:prose-invert">
 					{@html result}
 				</div>
 			</div>
 		</TabItem>
 	</Tabs>
 
-	<div class="flex items-center bottom-0 p-4 gap-8">
-		<InfoDrawer/>
-		<Button on:click={addNewNote} class="btn bg-note-{theme}" >Save</Button>
+	<div class="bottom-0 flex items-center gap-8 p-4">
+		<InfoDrawer />
+		<Button on:click={addNewNote} class="btn bg-note-{theme}">Save</Button>
 		<Button class="btn bg-note-{theme}"><a href="/">Cancel</a></Button>
 	</div>
 </div>

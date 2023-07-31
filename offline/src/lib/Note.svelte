@@ -14,17 +14,17 @@
 </script>
 
 <div
-	class="flex flex-col relative w-full p-8 aspect-[5/6] rounded-2xl shadow-lg shadow-slate-400 bg-note-{note.color}"
+	class="relative flex aspect-[5/6] w-full flex-col rounded-2xl p-8 shadow-lg shadow-slate-400 bg-note-{note.color} dark:shadow-slate-700"
 >
 	<button
-		class="absolute z-10 top-3 right-3 p-2 text-slate-700 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-500 group"
+		class="group absolute right-3 top-3 z-10 p-2 text-slate-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-500"
 		on:click={onStar}
 	>
 		{#if note.starred}
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
-				class="block w-8 h-8 fill-current"
+				class="block h-8 w-8 fill-current"
 			>
 				<path
 					fill-rule="evenodd"
@@ -37,7 +37,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="hidden w-8 h-8 fill-none stroke-current"
+				class="hidden h-8 w-8 fill-none stroke-current"
 			>
 				<path
 					stroke-linecap="round"
@@ -51,7 +51,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="block w-8 h-8 fill-none stroke-current"
+				class="block h-8 w-8 fill-none stroke-current"
 			>
 				<path
 					stroke-linecap="round"
@@ -62,7 +62,7 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
-				class="hidden w-8 h-8 fill-current"
+				class="hidden h-8 w-8 fill-current"
 			>
 				<path
 					fill-rule="evenodd"
@@ -75,17 +75,17 @@
 	</button>
 	<a
 		href="/edit/{note.id}"
-		class="absolute z-10 bottom-3 right-3 p-2 text-slate-700 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-500"
+		class="absolute bottom-3 right-3 z-10 p-2 text-slate-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-500"
 	>
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 fill-current">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 fill-current">
 			<path
 				d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"
 			/>
 		</svg>
 		<Tooltip arrow={false}>Edit Note</Tooltip>
 	</a>
-	<h2 class="w-full mr-6 text-xl font-medium">{note.title}</h2>
-	<div class="w-full flex-1 overflow-hidden fade-text">
+	<h2 class="mr-6 w-full text-xl font-medium">{note.title}</h2>
+	<div class="fade-text w-full flex-1 overflow-hidden">
 		<p class="my-2">{note.excerpt}</p>
 	</div>
 </div>
