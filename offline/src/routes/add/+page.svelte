@@ -58,7 +58,7 @@
 					id="content"
 					rows="20"
 					placeholder="Content"
-					class="unreset flex gap-2 rounded-lg focus:outline-none neumorph border-black"
+					class="flex gap-2 rounded-lg focus:outline-none neumorph border-black"
 				/>
 			</div>
 		</TabItem>
@@ -67,7 +67,7 @@
 				id="preview"
 				class="flex gap-2 p-2 px-3 rounded-lg focus:outline-none neumorph border-black"
 			>
-				<div class="unreset">
+				<div class="prose prose-slate prose-sm">
 					{@html result}
 				</div>
 			</div>
