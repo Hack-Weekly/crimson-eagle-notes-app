@@ -24,7 +24,7 @@ This is a test note.
 ");
     let default_note: NoteDTO = Default::default();
 
-    let note = convert_to_note(content.clone(), default_note);
+    let note = convert_to_note(content, default_note);
     assert_eq!(note.id, TinyId::from_u64_unchecked(1));
     assert_eq!(note.title, "test note");
     assert_eq!(note.excerpt, "This is a test note.");
@@ -101,9 +101,11 @@ This is a note with invalid frontmatter.
 ");
     let default_note: NoteDTO = Default::default();
 
-    let note = convert_to_note(content.clone(), default_note.clone());
+    let note = convert_to_note(content, default_note.clone());
 
-    assert_eq!(note.excerpt, "This is a note with invalid frontmatter."); // Assuming first paragraph is used as excerpt
+    assert_eq!(note.title, default_note.title);
+    assert_eq!(note.id, default_note.id);
+    assert_eq!(note.excerpt, "This is a note with invalid frontmatter.");
 }
 
 #[test]
@@ -119,6 +121,9 @@ This is a note with overridden title.
 
     assert_ne!(note.title, default_note.title);
     assert_eq!(note.title, "Overridden title");
+
+    assert_eq!(note.excerpt, "This is a note with overridden title.");
+    assert_eq!(note.content, "<p>This is a note with overridden title.</p>\n");
 }
 
 #[test]
@@ -165,6 +170,10 @@ title: Note with Lists
     let default_note: NoteDTO = Default::default();
     let note = convert_to_note(content, default_note);
 
+    assert_eq!(note.id, TinyId::from_u64_unchecked(3));
+    assert_eq!(note.title, "Note with Lists");
+    assert!(note.content.contains("<h1>Shopping List</h1>"));
+    assert!(note.content.contains("<h1>Todo List</h1>"));
     // Check if the list elements are preserved in the content
     assert!(note.content.contains("<li>Apples</li>"));
     assert!(note.content.contains("<li>Oranges</li>"));
@@ -189,6 +198,9 @@ def hello_world():
 ");
     let default_note: NoteDTO = Default::default();
     let note = convert_to_note(content, default_note);
+    assert_eq!(note.id, TinyId::from_u64_unchecked(4));
+    assert_eq!(note.title, "Note with Code Blocks");
+    assert_eq!(note.excerpt, "Here is a function in Python:");
     // Check if the code block is preserved in the content
     assert!(note.content.contains("<code class=\"language-python\">def hello_world():"));
     assert!(note.content.contains("print(\"Hello, world!\")\n</code>"));
@@ -206,8 +218,9 @@ This is *italic* text.
 ");
     let default_note: NoteDTO = Default::default();
     let note = convert_to_note(content, default_note);
+    assert_eq!(note.id, TinyId::from_u64_unchecked(6));
+    assert_eq!(note.title, "Note with Bold and Italic Text");
     // Check if the bold and italic text are preserved in the content
-    println!("{}", note.content);
     assert!(note.content.contains("<strong>bold</strong>"));
     assert!(note.content.contains("<em>italic</em>"));
 }
@@ -222,7 +235,8 @@ Check out this [Link](https://www.example.com) for more information.
 ");
     let default_note: NoteDTO = Default::default();
     let note = convert_to_note(content, default_note);
+    assert_eq!(note.id, TinyId::from_u64_unchecked(5));
+    assert_eq!(note.title, "Note with Links");
     // Check if the link is preserved in the content
-    println!("{}", note.content);
     assert!(note.content.contains("<a href=\"https://www.example.com\" rel=\"noopener noreferrer\">Link</a>"));
 }
