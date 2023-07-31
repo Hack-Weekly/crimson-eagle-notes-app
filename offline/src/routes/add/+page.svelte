@@ -6,9 +6,12 @@
 	import { afterUpdate } from 'svelte';
 	import { notes } from '$lib/stores/note';
 	import type { NoteType } from '../../types/note.type';
+	import InfoDrawer from '$lib/InfoDrawer.svelte';
 
 	let newNoteTitle = '';
 	let newNoteContent = '';
+	let theme = localStorage.getItem('noteColor');
+	
 
 	const md = new MarkdownIt({
 		breaks: true,
@@ -58,11 +61,11 @@
 					id="content"
 					rows="20"
 					placeholder="Content"
-					class="flex gap-2 rounded-lg focus:outline-none neumorph border-black"
+					class="flex gap-2 rounded-lg focus:outline-none neumorph border-black focus:border-note-{theme}"
 				/>
 			</div>
 		</TabItem>
-		<TabItem title="Preview">
+		<TabItem title="Preview" class="text-{theme}">
 			<div
 				id="preview"
 				class="flex gap-2 p-2 px-3 rounded-lg focus:outline-none neumorph border-black"
@@ -75,7 +78,8 @@
 	</Tabs>
 
 	<div class="flex items-center bottom-0 p-4 gap-8">
-		<Button on:click={addNewNote} class="btn">Save</Button>
-		<Button class="btn"><a href="/">Cancel</a></Button>
+		<InfoDrawer/>
+		<Button on:click={addNewNote} class="btn bg-note-{theme}" >Save</Button>
+		<Button class="btn bg-note-{theme}"><a href="/">Cancel</a></Button>
 	</div>
 </div>
