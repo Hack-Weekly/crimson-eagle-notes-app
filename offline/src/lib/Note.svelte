@@ -17,7 +17,7 @@
 	class="relative flex aspect-[5/6] w-full flex-col rounded-2xl p-8 shadow-lg shadow-slate-400 bg-note-{note.color} dark:shadow-slate-700"
 >
 	<button
-		class="group absolute right-3 top-3 z-10 p-2 text-slate-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-500"
+		class="group absolute right-3 top-3 z-10 p-2 text-slate-700 hover:text-primary-600"
 		on:click={onStar}
 	>
 		{#if note.starred}
@@ -75,7 +75,7 @@
 	</button>
 	<a
 		href="/edit/{note.id}"
-		class="absolute bottom-3 right-3 z-10 p-2 text-slate-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-500"
+		class="absolute bottom-3 right-3 z-10 p-2 text-slate-700 hover:text-primary-600"
 	>
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 fill-current">
 			<path
