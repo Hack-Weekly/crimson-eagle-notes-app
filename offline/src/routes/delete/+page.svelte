@@ -1,11 +1,15 @@
 <script lang="ts">
 	import { Button, Modal, Checkbox } from 'flowbite-svelte';
 	import { notes } from '$lib/stores/note';
+	import type { NoteType } from '../../types/note.type';
 
 	let popupModal = false;
-	let group = [];
+	let group: number[] = [];
 
-	let currentNotes = JSON.parse(localStorage.getItem('notes') || '[]');
+	let currentNotes: NoteType[];
+	notes.subscribe((value) => {
+		currentNotes = value;
+	});
 
 	let showNotes = false;
 	// let areYouSure = false; // on note click pop are you sure, if yes is click run deleteNoteById, if cancel areYouSure = false;
