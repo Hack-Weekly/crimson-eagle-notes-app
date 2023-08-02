@@ -1,7 +1,11 @@
 <script>
+	import { onMount } from 'svelte';
 	import { Breadcrumb, BreadcrumbItem, Button, Modal } from 'flowbite-svelte';
 	import Login from '$lib/Login.svelte';
 
+	export let data
+	let { supabase } = data
+	$: ({ supabase } = data)
 	let isLoggedIn = false; // TODO use store
 	let isOpen = false;
 	let sync = false;
@@ -12,6 +16,13 @@
 	const onSubmit = () => {
 		console.log('settings saved');
 	};
+
+	const handleSignOut = async () => {
+    	await supabase.auth.signOut()
+		localStorage.setItem('isLoggedIn', 'false')
+		window.location.href = '/profile';
+  	}
+
 </script>
 
 <div>
@@ -23,7 +34,13 @@
 
 	<p class="my-2 dark:text-gray-200">
 		You need to log in to sync your Notes.
-		<Button on:click={login} size="sm" class="ml-2">Log in</Button>
+		{#if localStorage.getItem('isLoggedIn') == 'true'}
+		<Button on:click="{handleSignOut}">Logout</Button>
+		{:else}
+		<a href="/auth" class="underline font-bold"> 
+			Login 
+		</a>
+		{/if}
 	</p>
 	<form on:submit={onSubmit}>
 		<section class="my-6 border-b border-slate-400 py-6">
@@ -48,7 +65,7 @@
 		</section>
 		<Button type="submit">Save Settings</Button>
 	</form>
-	{#if isOpen}
+	{#if localStorage.getItem('isLoggedIn') == 'true'}
 		<Modal bind:open={isOpen} outsideclose>
 			<Login />
 		</Modal>

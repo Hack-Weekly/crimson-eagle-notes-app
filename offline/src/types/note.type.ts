@@ -14,3 +14,15 @@ export type PaginatedNotes = {
     current_page: number,
     per_page: 12,
 }
+
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    password: string;
+}
+export interface Database {
+    users: User[];
+    notes: NoteType[];
+    paginatednotes:  PaginatedNotes[];
+  }
