@@ -40,6 +40,8 @@
   "type": "module",
   "dependencies": {
     "@floating-ui/dom": "^1.4.5",
+    "@supabase/auth-helpers-sveltekit": "^0.10.2",
+    "@supabase/supabase-js": "^2.31.0",
     "@tauri-apps/api": "^1.4.0",
     "@tiptap/core": "^2.0.4",
     "@tiptap/pm": "^2.0.4",
